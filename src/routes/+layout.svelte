@@ -1,6 +1,5 @@
 <script>
 import { setContext } from 'svelte';
-import Page from './+page.svelte';
 import '../app.css';
 let fon_negro = false;
 function cambiarFondo()
@@ -14,7 +13,7 @@ setContext('cambiarFondo', cambiarFondo);
 <body class={fon_negro ? 'negro' : 'blanco'}>
     <div class="app">
         <main>
-           <Page />
+           <slot />
         </main>
     </div>  
 </body>
