@@ -5,6 +5,9 @@
 	const cambiarFondo = getContext('cambiarFondo');
 	let CambiarIcono = false;
 	let valorInput = '';
+	/**
+     * @type {any[]}
+     */
 	let campos = [];
 	function SiCambiaFondo()
 	{
@@ -29,6 +32,9 @@
 			alert ('Este campo ya existe');
 		}
 	}
+	/**
+     * @param {{ key: string; }} event
+     */
 	function cuandoEnter(event)
 	{
 		if(event.key === 'Enter')

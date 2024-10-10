@@ -34,5 +34,5 @@ setContext('cambiarFondo', cambiarFondo);
     {
         background: black;       
     }
-   
+    
 </style>

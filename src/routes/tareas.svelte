@@ -1,14 +1,26 @@
 <!-- portafolio de tareas -->
  <script>
-    export let campos = [];
+    /**
+     * @type {any[]}
+     */
+     export let campos = [];
+    /**
+     * @param {number} index
+     */
     function eliminarCampo(index)
     {
         campos = campos.filter((_, i) => i !== index);
     }
+    /**
+     * @param {number} index
+     */
     function editarTexto(index)
     {
         campos[index].editar = !campos[index].editar;
     }
+    /**
+     * @param {number} index
+     */
     function tacharTarea(index)
     {
         campos[index].tachar = !campos[index].tachar;
@@ -35,6 +47,9 @@
                 on:blur={() => editarTexto(index)} 
             />
             {:else}
+                 <!-- svelte-ignore a11y-click-events-have-key-events -->
+                 <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
+                 <!-- svelte-ignore a11y-label-has-associated-control -->
                  <label on:click={() => editarTexto(index)}>{campo.texto}</label>
             {/if}
         </div>
