@@ -4,7 +4,8 @@
      * @type {any[]}
      */
      export let campos = [];
-    /**
+     let filtro ='todo';
+         /**
      * @param {number} index
      */
     function eliminarCampo(index)
@@ -25,9 +26,21 @@
     {
         campos[index].tachar = !campos[index].tachar;
     }
+    $: tareasFiltradas = campos.filter(campo => {
+        if(filtro ==='todo') return true;
+        if(filtro ==='pendientes') return !campo.tachar;
+        if(filtro ==='completados') return campo.tachar;
+        return true;
+    });
+    /**
+     * @param {string} nuevoFiltro
+     */
+    function seleccionFiltro(nuevoFiltro){
+        filtro = nuevoFiltro;
+    }
  </script>
 
-{#each campos as campo, index}
+{#each tareasFiltradas as campo, index}
  <div class="tareas d-flex justify-content-center" >
     <div class="row border w-50 shadow p-2 bg-white rounded">
         <div class="col-md-1 ms-md-auto">
@@ -60,10 +73,29 @@
             aria-label="Cerrar" 
             on:click={() => eliminarCampo(index)}>
             </button>
-        </div>
+        </div> 
     </div>
 </div>
 {/each}    
+{#if campos.length < 1}
+<p></p>
+{:else}
+<div class="filtro d-flex justify-content-center">
+    <div class="d-flex border w-50 shadow  bg-white rounded">
+        <div class="conteo mx-5 mt-2">
+            <p>{campos.length} tareas</p>  
+        </div>
+        <div class="seleccion mx-5 mt-2 ">
+            <!-- svelte-ignore a11y-invalid-attribute -->
+            <a href="#" on:click|preventDefault={() => seleccionFiltro('todo')}>Todo</a>
+            <!-- svelte-ignore a11y-invalid-attribute -->
+            <a href="#" on:click|preventDefault={() => seleccionFiltro('pendientes')}>Pendiente</a>
+            <!-- svelte-ignore a11y-invalid-attribute -->
+            <a href="#" on:click|preventDefault={() => seleccionFiltro('completados')}>Completados</a>
+        </div>
+    </div>
+</div>
+{/if}
 <style>
     .tarea  
     {
@@ -72,6 +104,7 @@
         height: 25px;
         border-radius: 50%;
         border: transparent;
+       
     }
     .fa-check
     {

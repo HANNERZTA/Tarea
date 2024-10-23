@@ -1,4 +1,5 @@
 <script>
+	import logo2 from "$lib/images/noche.jpg";
 	import logo from "$lib/images/Imagen2.png";
 	import { getContext } from "svelte";
 	import Tareas from "./tareas.svelte";
@@ -9,16 +10,22 @@
      * @type {any[]}
      */
 	let campos = [];
+
+	const imagenFondo = [logo,logo2];
+	let indiceImagen = 0;
 	function SiCambiaFondo()
 	{
 		cambiarFondo();
 		cambiarIcon();
+		cambiarImagenFondo();
 	}
 	function cambiarIcon()
 	{
 		CambiarIcono = !CambiarIcono;
 	}
-	
+	function cambiarImagenFondo(){
+		indiceImagen = (indiceImagen + 1) % imagenFondo.length;
+	}
 	function AgregarElementos()
 	{
 		const nuevoTexto= valorInput.trim();
@@ -45,13 +52,7 @@
 
 </script>
 	<div class="container-">
-		<div class="img position-relative mb-3">
-			<img
-				src={logo}
-				class="img-fluid bg-primary"
-				style="--bs-bg-opacity: .5;"
-				alt="..."
-			/>
+		<div class="img position-relative mb-3" style="background-image: url({imagenFondo[indiceImagen]}); background-size:cover; height: 300px">
 			<button
 				on:click={SiCambiaFondo}
 				type="button"
