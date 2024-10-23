@@ -43,9 +43,10 @@
 {#each tareasFiltradas as campo, index}
  <div class="tareas d-flex justify-content-center" >
     <div class="row border w-50 shadow p-2 bg-white rounded">
-        <div class="col-md-1 ms-md-auto">
+        <div class="col-md-1 w-10 h-auto">
             <button 
             class= "tarea
+            
             fa-solid  
             {campo.tachar ? 'fa-check':'fa-'}"
             on:click={() => tacharTarea(index)}
