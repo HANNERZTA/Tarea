@@ -110,7 +110,6 @@
     .fa-check
     {
         background: linear-gradient(45deg,#f1948a,#707b7c);
-        width: 100%;
-        height: 100%;
     }
+
 </style>
